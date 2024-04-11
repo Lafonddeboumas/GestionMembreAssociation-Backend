@@ -1,6 +1,8 @@
 package possacode.gestionmembre.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +24,7 @@ public class Adhesion extends AbstractEntity{
     private Date dateDebut;
     private Date dateFin;
     private StatutAdhesion statutAdhesion;
+    @ManyToOne
+    @JoinColumn(name = "membre_id")
+    private Membre membre;
 }

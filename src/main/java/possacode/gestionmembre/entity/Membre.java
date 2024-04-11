@@ -41,4 +41,7 @@ public class Membre extends AbstractEntity {
    @OneToMany(mappedBy = "membre")
    private List<Participation> participations;
 
+    @OneToMany(mappedBy = "membre")
+   private List<Adhesion> adhesions;
+
 }
