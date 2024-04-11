@@ -3,6 +3,7 @@ package possacode.gestionmembre.dto.methode3;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 import possacode.gestionmembre.entity.Adhesion;
+import possacode.gestionmembre.entity.Membre;
 import possacode.gestionmembre.entity.StatutAdhesion;
 import possacode.gestionmembre.entity.TypeAdhesion;
 
@@ -20,20 +21,19 @@ public class AdhesionDTO {
     private Date dateDebut;
     private Date dateFin;
     private StatutAdhesion statutAdhesion;
+    private MembreDTO membreDTO;
 
     public static AdhesionDTO fromAdhesion(Adhesion adhesion){
        AdhesionDTO adhesionDTO = new AdhesionDTO();
         BeanUtils.copyProperties(adhesion, adhesionDTO);
+        adhesionDTO.setMembreDTO(MembreDTO.fromMember(adhesion.getMembre()));
         return adhesionDTO;
     }
 
     public static Adhesion fromAdhesionDTO(AdhesionDTO adhesionDTO){
-        return Adhesion.builder()
-                .typeAdhesion(adhesionDTO.getTypeAdhesion())
-                .tarif(adhesionDTO.getTarif())
-                .dateDebut(adhesionDTO.getDateDebut())
-                .dateFin(adhesionDTO.getDateFin())
-                .statutAdhesion(adhesionDTO.getStatutAdhesion())
-                .build();
+        Adhesion adhesion = new Adhesion();
+        BeanUtils.copyProperties(adhesionDTO, adhesion);
+        adhesion.setMembre(MembreDTO.fromMemberDto(adhesionDTO.getMembreDTO()));
+        return adhesion;
     }
 }

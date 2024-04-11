@@ -25,7 +25,7 @@ public class Membre extends AbstractEntity {
 
     private String email;
 
-    private int telephone;
+    private String telephone;
 
     private Date dateDeNaissance;
 
