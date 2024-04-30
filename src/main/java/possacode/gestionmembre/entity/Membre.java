@@ -31,7 +31,7 @@ public class Membre extends AbstractEntity {
 
     private Date dateAdhesion;
 
-    private boolean statut;
+    private StatutMembre statutMembre;
 
     private String photo;
 

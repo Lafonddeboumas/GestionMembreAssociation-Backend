@@ -2,6 +2,7 @@ package possacode.gestionmembre.dto.methode2;
 
 import lombok.*;
 import possacode.gestionmembre.entity.Membre;
+import possacode.gestionmembre.entity.StatutMembre;
 
 import java.util.Date;
 
@@ -11,40 +12,43 @@ import java.util.Date;
 @Builder
 public class MembreDTO {
 
-    private String nom;
+    private Integer id;
+    private String nomMembre;
     private String prenom;
     private String adresse;
     private String email;
-    private int telephone;
+    private String telephone;
     private Date dateDeNaissance;
     private Date dateAdhesion;
-    private boolean statut;
+    private StatutMembre statutMembre;
     private String photo;
 
     public static MembreDTO fromMember(Membre membre){
        return MembreDTO.builder()
-               .nom(membre.getNom())
+               .id(membre.getId())
+               .nomMembre(membre.getNom())
                .prenom(membre.getPrenom())
                .adresse(membre.getAdresse())
                .email(membre.getEmail())
                .telephone(membre.getTelephone())
                .dateDeNaissance(membre.getDateDeNaissance())
                .dateAdhesion(membre.getDateAdhesion())
-               .statut(membre.isStatut())
+               .statutMembre(membre.getStatutMembre())
                .photo(membre.getPhoto())
                .build();
     }
 
     public static Membre fromMemberDto(MembreDTO membreDTO){
         return Membre.builder()
-                .nom(membreDTO.getNom())
+                .id(membreDTO.getId())
+                .nom(membreDTO.getNomMembre())
                 .prenom(membreDTO.getPrenom())
                 .adresse(membreDTO.getAdresse())
                 .email(membreDTO.getEmail())
                 .telephone(membreDTO.getTelephone())
                 .dateDeNaissance(membreDTO.getDateDeNaissance())
                 .dateAdhesion(membreDTO.getDateAdhesion())
-                .statut(membreDTO.isStatut())
+                .statutMembre(membreDTO.getStatutMembre())
                 .photo(membreDTO.getPhoto())
                 .build();
     }

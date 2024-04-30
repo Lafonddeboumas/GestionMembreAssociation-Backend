@@ -1,4 +1,4 @@
-package possacode.gestionmembre.controller;
+package possacode.gestionmembre.controller.cotisationImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ import possacode.gestionmembre.service.MembreService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gestionmembre/v1")
+@RequestMapping("/gestionmembre/v1/membre")
 @RequiredArgsConstructor
 public class MembreController {
 
