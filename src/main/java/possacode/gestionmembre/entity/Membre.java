@@ -1,11 +1,9 @@
 package possacode.gestionmembre.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import possacode.gestionmembre.enumforentity.StatutMembre;
 
 import java.util.Date;
 import java.util.List;
@@ -27,19 +25,14 @@ public class Membre extends AbstractEntity {
 
     private String telephone;
 
-    private Date dateDeNaissance;
-
     private Date dateAdhesion;
-
+    @Enumerated(EnumType.STRING)
     private StatutMembre statutMembre;
 
     private String photo;
 
    @OneToMany(mappedBy = "membre")
     private List<Cotisation> cotisation;
-
-   @OneToMany(mappedBy = "membre")
-   private List<Participation> participations;
 
     @OneToMany(mappedBy = "membre")
    private List<Adhesion> adhesions;

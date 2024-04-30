@@ -1,8 +1,9 @@
-package possacode.gestionmembre.controller.cotisationImpl;
+package possacode.gestionmembre.controller.controllerImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import possacode.gestionmembre.dto.methode2.MembreDTO;
+//import possacode.gestionmembre.dto.methode2.MembreDTO;
+import possacode.gestionmembre.dto.methode1.MembreDTO;
 import possacode.gestionmembre.service.MembreService;
 
 import java.util.List;
@@ -22,5 +23,10 @@ public class MembreController {
     @GetMapping("/")
     public List<MembreDTO> findAll(){
         return membreService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public MembreDTO findById(@PathVariable(value = "id") Integer id){
+        return membreService.findById(id);
     }
 }

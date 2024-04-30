@@ -2,7 +2,6 @@ package possacode.gestionmembre.dto.methode2;
 
 import lombok.*;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import possacode.gestionmembre.entity.Cotisation;
 import possacode.gestionmembre.entity.Membre;
 
@@ -21,43 +20,40 @@ public class CotisationDTO {
     private double montant;
     private Date dateVersement;
     private String modePaiment;
-    private String position;
     private Integer idMembre;
     private String nomMembre;
 
+     /*
+        Ceci est la deuxième méthode d'utilisation du Pattern DTO
+        en utilisant cette fois ci la méthode builder fournis par
+        l'annotation @Builder qui viens de la dépendance lombok
+     */
 
     public static CotisationDTO fromCotisation(Cotisation cotisation){
-       // return CotisationDTO.builder()
-         //       .objet(cotisation.getObjet())
-         //       .montant(cotisation.getMontant())
-          //      .dateVersement(cotisation.getDateVersement())
-         //       .modePaiment(cotisation.getModePaiment())
-          //      .statut(cotisation.getStatut())
-         //       .membreDTO(MembreDTO.fromMember(cotisation.getMembre()))
-          //     // .idMembre(cotisation.getMembre().getId())
-          //      .build();
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-        CotisationDTO cotisationDTO = modelMapper.map(cotisation, CotisationDTO.class);
-        cotisationDTO.setIdMembre(cotisation.getMembre().getId());
-        return cotisationDTO;
+         return CotisationDTO.builder()
+                 .id(cotisation.getId())
+                 .objet(cotisation.getObjet())
+                 .montant(cotisation.getMontant())
+                 .dateVersement(cotisation.getDateVersement())
+                 .modePaiment(cotisation.getModePaiment())
+                 .idMembre(cotisation.getMembre().getId())
+                 .nomMembre(cotisation.getMembre().getNom())
+                 .build();
+
     }
 
     public static Cotisation fromCotisationDTO(CotisationDTO cotisationDTO){
-        //return Cotisation.builder()
-          //      .objet(cotisationDTO.getObjet())
-            //    .montant(cotisationDTO.getMontant())
-              //  .dateVersement(cotisationDTO.getDateVersement())
-              //  .modePaiment(cotisationDTO.getModePaiment())
-              //  .statut(cotisationDTO.getStatut())
-              //  .membre(MembreDTO.fromMemberDto(cotisationDTO.getMembreDTO()))
-              //  .build();
-        ModelMapper modelMapper = new ModelMapper();
-        Cotisation cotisation = modelMapper.map(cotisationDTO, Cotisation.class);
-        cotisation.setMembre(Membre
-                .builder()
-                        .id(cotisationDTO.getIdMembre())
-                .build());
-        return cotisation;
+        return Cotisation.builder()
+                .id(cotisationDTO.getId())
+                .objet(cotisationDTO.getObjet())
+                .montant(cotisationDTO.getMontant())
+                .dateVersement(cotisationDTO.getDateVersement())
+                .modePaiment(cotisationDTO.getModePaiment())
+                .membre(
+                        Membre.builder()
+                                .id(cotisationDTO.getIdMembre())
+                        .build())
+                .build();
+
     }
 }

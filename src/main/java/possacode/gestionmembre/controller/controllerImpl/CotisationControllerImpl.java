@@ -1,9 +1,10 @@
-package possacode.gestionmembre.controller.cotisationImpl;
+package possacode.gestionmembre.controller.controllerImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import possacode.gestionmembre.controller.CotisationController;
-import possacode.gestionmembre.dto.methode2.CotisationDTO;
+import possacode.gestionmembre.dto.methode1.CotisationDTO;
+//import possacode.gestionmembre.dto.methode2.CotisationDTO;
 import possacode.gestionmembre.service.CotisationService;
 
 import java.util.List;

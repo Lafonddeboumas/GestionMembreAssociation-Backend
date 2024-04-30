@@ -2,11 +2,8 @@ package possacode.gestionmembre.dto.methode2;
 
 import lombok.*;
 import possacode.gestionmembre.entity.Adhesion;
-import possacode.gestionmembre.entity.Membre;
-import possacode.gestionmembre.entity.StatutAdhesion;
-import possacode.gestionmembre.entity.TypeAdhesion;
-
-import java.util.Date;
+import possacode.gestionmembre.enumforentity.StatutAdhesion;
+import possacode.gestionmembre.enumforentity.TypeAdhesion;
 
 @Getter
 @Setter
@@ -16,17 +13,19 @@ public class AdhesionDTO {
 
     private TypeAdhesion typeAdhesion;
     private double tarif;
-    private Date dateDebut;
-    private Date dateFin;
     private StatutAdhesion statutAdhesion;
     private MembreDTO membreDTO;
+
+    /*
+        Ceci est la deuxième méthode d'utilisation du Pattern DTO
+        en utilisant cette fois ci la méthode builder fournis par
+        l'annotation @Builder qui viens de la dépendance lombok
+     */
 
     public static AdhesionDTO fromAdhesion(Adhesion adhesion){
         return AdhesionDTO.builder()
                 .typeAdhesion(adhesion.getTypeAdhesion())
                 .tarif(adhesion.getTarif())
-                .dateDebut(adhesion.getDateDebut())
-                .dateFin(adhesion.getDateFin())
                 .statutAdhesion(adhesion.getStatutAdhesion())
                 .membreDTO(MembreDTO.fromMember(adhesion.getMembre()))
                 .build();
@@ -36,8 +35,6 @@ public class AdhesionDTO {
         return Adhesion.builder()
                 .typeAdhesion(adhesionDTO.getTypeAdhesion())
                 .tarif(adhesionDTO.getTarif())
-                .dateDebut(adhesionDTO.getDateDebut())
-                .dateFin(adhesionDTO.getDateFin())
                 .statutAdhesion(adhesionDTO.getStatutAdhesion())
                 .membre(MembreDTO.fromMemberDto(adhesionDTO.getMembreDTO()))
                 .build();

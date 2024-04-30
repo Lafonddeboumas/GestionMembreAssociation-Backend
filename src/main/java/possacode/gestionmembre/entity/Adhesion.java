@@ -1,15 +1,13 @@
 package possacode.gestionmembre.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
-import java.util.Date;
+import possacode.gestionmembre.enumforentity.StatutAdhesion;
+import possacode.gestionmembre.enumforentity.TypeAdhesion;
 
 @Getter
 @Setter
@@ -21,8 +19,6 @@ public class Adhesion extends AbstractEntity{
 
     private TypeAdhesion typeAdhesion;
     private double tarif;
-    private Date dateDebut;
-    private Date dateFin;
     private StatutAdhesion statutAdhesion;
     @ManyToOne
     @JoinColumn(name = "membre_id")

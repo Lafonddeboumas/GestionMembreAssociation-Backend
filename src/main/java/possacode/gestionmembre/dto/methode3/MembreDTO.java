@@ -3,33 +3,36 @@ package possacode.gestionmembre.dto.methode3;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 import possacode.gestionmembre.entity.Membre;
+import possacode.gestionmembre.enumforentity.StatutMembre;
 
 import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class MembreDTO {
 
-    private String nom;
+    private Integer id;
+    private String nomMembre;
     private String prenom;
     private String adresse;
     private String email;
-    private int telephone;
-    private Date dateDeNaissance;
-    private Date dateAdhesion;
-    private boolean statut;
+    private String telephone;
+    private StatutMembre statutMembre;
     private String photo;
 
-    public static MembreDTO fromMember(Membre membre){
+     /*
+        Ceci est la troisième méthode d'utilisation du Pattern DTO
+        en utilisant cette fois ci la classe BeanUtils avec sa méthode
+        copyProperties  fournis par SPRING
+     */
+
+    public static MembreDTO fromMembre(Membre membre){
       MembreDTO membreDTO = new MembreDTO();
         BeanUtils.copyProperties(membre, membreDTO);
         return membreDTO;
     }
 
-    public static Membre fromMemberDto(MembreDTO membreDTO){
+    public static Membre fromMembreDto(MembreDTO membreDTO){
         Membre membre = new Membre();
         BeanUtils.copyProperties(membreDTO,membre);
         return membre;

@@ -1,4 +1,4 @@
-package possacode.gestionmembre.entity;
+package possacode.gestionmembre.enumforentity;
 
 public enum TypeAdhesion {
 

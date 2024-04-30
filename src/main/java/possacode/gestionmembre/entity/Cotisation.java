@@ -20,7 +20,6 @@ public class Cotisation extends AbstractEntity {
     private double montant;
     private Date dateVersement;
     private String modePaiment;
-    private String position;
     @ManyToOne
     @JoinColumn(name = "id_membre")
     private Membre membre;
